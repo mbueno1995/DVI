@@ -1,0 +1,182 @@
+{% load socialaccount %}
+{% providers_media_js %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DVI</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<header class="text-gray-700 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <!--lOGO-->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M 12 2 L 2 7 l 10 5 l 10 -5 l -10 -5 Z M 2 17 l 10 5 l 10 -5 M 2 12 l 10 5 l 10 -5" />
+      </svg>
+
+      <span class="ml-3 text-xl">DVI</span>
+    </a>
+    <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+      <a class="mr-5 hover:text-gray-900" href="{% url 'index' %}">Home</a>
+      {% if user.is_authenticated %}
+        <a class="mr-5 hover:text-gray-900" href="{% url 'logout' %}">Logout</a>
+        <span class="ml-auto text-indigo-500">Hi {{user}}!</span>
+      {% elif uname is not None %}
+          <a class="mr-5 hover:text-gray-900" href="{% url 'upload_video' %}">Upload Video</a>
+        <a class="mr-5 hover:text-gray-900" href="{% url 'logout' %}">Logout</a>
+        <span class="ml-auto text-indigo-500">Hi {{uname}}!</span>
+      {% else %}
+       <a class="mr-5 hover:text-gray-900" href="{% url 'register' %}">Register/Sign in&emsp; &emsp;</a>
+      {% endif %}
+    </nav>
+
+
+    <section class="text-gray-700 body-font">
+      <!--<div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">-->
+        <!--<div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">-->
+        <form action="{% url 'index' %}" method="get">
+          <div class="flex w-full md:justify-start justify-center">
+              <input class="bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 xl:w-full xl:w-1/2 w-2/4 md:w-full" placeholder=" " type="text" name="search_string">
+              <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Search</button>
+          </div>
+        </form>
+        <!--</div>-->
+      <!--</div>-->
+    </section>
+
+
+
+
+
+    <section class="text-gray-700 body-font">
+
+        <!--SEARCH -->
+
+    </section>
+  </div>
+</header>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<footer class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col">
+    <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M 12 2 L 2 7 l 10 5 l 10 -5 l -10 -5 Z M 2 17 l 10 5 l 10 -5 M 2 12 l 10 5 l 10 -5" />
+        </svg>
+        <span class="ml-3 text-xl">DVI</span>
+      </a>
+      <p class="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+    </div>
+    <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <nav class="list-none mb-10">
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">First Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+          </li>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-200">
+    <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+      <p class="text-gray-500 text-sm text-center sm:text-left">© 2020 Digital Video Interface
+        <a class="text-gray-600 ml-1" href="https://twitter.com/knyttneve" target="_blank" rel="noopener noreferrer"></a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M 18 2 h -3 a 5 5 0 0 0 -5 5 v 3 H 7 v 4 h 3 v 8 h 4 v -8 h 3 l 1 -4 h -4 V 7 a 1 1 0 0 1 1 -1 h 3 Z" />
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M 23 3 a 10.9 10.9 0 0 1 -3.14 1.53 a 4.48 4.48 0 0 0 -7.86 3 v 1 A 10.66 10.66 0 0 1 3 4 s -4 9 5 13 a 11.64 11.64 0 0 1 -7 2 c 9 5 20 0 20 -11.5 a 4.5 4.5 0 0 0 -0.08 -0.83 A 7.72 7.72 0 0 0 23 3 Z" />
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M 16 11.37 A 4 4 0 1 1 12.63 8 A 4 4 0 0 1 16 11.37 Z m 1.5 -4.87 h 0.01" />
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24">
+            <path stroke="none" d="M 16 8 a 6 6 0 0 1 6 6 v 7 h -4 v -7 a 2 2 0 0 0 -2 -2 a 2 2 0 0 0 -2 2 v 7 h -4 v -7 a 6 6 0 0 1 6 -6 Z M 2 9 h 4 v 12 H 2 Z" />
+            <circle stroke="none" cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+      </span>
+    </div>
+  </div>
+</footer>
+</html>

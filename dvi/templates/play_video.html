@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto flex flex-wrap">
+
+    {% for d in details %}
+    <div class="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
+      <video width="600" height="400" controls>
+        <source src="{{d.videofile.url}}" type="video/mp4">
+      </video>
+
+      <div class="p-6">
+            <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">{{d.category|upper}}</h2>
+            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{d.videotitle}}</h1>
+            <p class="leading-relaxed mb-3">{{d.videodesc}}</p>
+            <div class="flex items-center flex-wrap ">
+              {% for usr in users %}
+              {% for dtl in usr.video.all %}
+              {% if dtl.vusername == d.vusername and forloop.counter == 1 %}
+
+              <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">{{usr.displayname}}</a>
+              {% endif %}
+              {% endfor %}
+              {% endfor %}
+
+              <span class="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
+                {{d.updated|date:"F j, Y"}}
+              </span>
+              <span class="text-gray-600 inline-flex items-center leading-none text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M 21 11.5 a 8.38 8.38 0 0 1 -0.9 3.8 a 8.5 8.5 0 0 1 -7.6 4.7 a 8.38 8.38 0 0 1 -3.8 -0.9 L 3 21 l 1.9 -5.7 a 8.38 8.38 0 0 1 -0.9 -3.8 a 8.5 8.5 0 0 1 4.7 -7.6 a 8.38 8.38 0 0 1 3.8 -0.9 h 0.5 a 8.48 8.48 0 0 1 8 8 v 0.5 Z" />
+                </svg>{{ comments.count }}
+              </span>
+            </div>
+
+            </br>
+            {% for comment in comments %}
+              <p>&emsp;{{ comment.cname }} | {{ comment.created_on }}</p>
+            <p>&emsp;&emsp;<b>{{ comment.content }}</b></p><br>
+            {% endfor %}
+
+            </br>
+            {% if uname != None %}
+            <h4>Post a Comment</h4>
+            <form method='get' action="{% url 'add_comment' %}">
+              <div class="form-group col-lg-6 col-md-12 name">
+                <input type="text" name="cname" class="form-control" id="cname" value={{uname}} readonly>
+              </div>
+              <div class="form-group">
+                &emsp;<textarea class=""form-control mb="10" rows="5" name="content" onfocus="this.placeholder=''"
+                onblur="this.placeholder= 'Comment'" required=""></textarea>
+              </div>
+              <input type = 'hidden' name="v_id" value={{d.id}}>
+              &emsp;<button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% endif %}
+
+
+
+          </div>
+    </div>
+
+    <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
+      {% for u in users %}
+      {% for r in u.video.all %}
+      {% if r.category == d.category %}
+      <div class="flex flex-col mb-10 lg:items-start items-center">
+
+        <div class="h-full border-2 border-gray-200 rounded-lg overflow-hidden">
+            <img class="lg:h-48 md:h-36 w-full object-cover object-center" alt="blog" src="{{r.thumbnailimg.url}}">
+        </div>
+
+        <div class="p-6">
+            <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">{{r.category|upper}}</h2>
+            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{r.videotitle}}</h1>
+            <p class="leading-relaxed mb-3">{{r.videodesc}}</p>
+            <div class="flex items-center flex-wrap ">
+
+              <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">{{u.displayname}}</a>
+
+              <span class="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
+
+              </span>
+              <span class="text-gray-600 inline-flex items-center leading-none text-sm">
+                {{r.updated|date:"F j, Y"}}
+              </span>
+            </div>
+         </div>
+
+      </div>
+
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content %}
